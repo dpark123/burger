@@ -2,37 +2,32 @@ var connection = require("../config/connection.js");
 var tableName = "burgers";
 
 var orm = {
-    selectAll: function(callback) {
-    var s = "SELECT * FROM " + tableName;
-
-    connection.query(s, function(err, result) {
-
-      callback(result);
-
+    selectAll: function() {
+    var action = "SELECT * FROM " + tableName;
+    connection.query(action, function(err, result) {
+      if (err) {throw err};
+      // cb(result);
+      console.log(result);
     });
   },
 
 
-  insertOne: function(burger, callback) {
-    var s = "INSERT INTO " + tableName + " (text, complete) VALUES (?,?)";
-    burger.complete = burger.complete || 0;
-    connection.query(s, [
-      burger.text, burger.complete
-    ], function(err, result) {
-
-      callback(result);
-
+  insertOne: function(name, devoured) {
+    var action = "INSERT INTO " + tableName + " (burger_name, devoured) VALUES (?,?)";
+    tableName.devoured = tableName.devoured || 0;
+    connection.query(action, [name, devoured], function(err, result) {
+      if (err) {throw err};
+      // cb(result);
+      console.log(result + "three!");
     });
   },
 
-  updateOne: function(burger, callback) {
-    var s = "UPDATE " + tableName + " SET text=? WHERE id=?";
-
-    connection.query(s, [
-      burger.text, burger.id
-    ], function(err, result) {
-
-      callback(result);
+  updateOne: function(name, id) {
+    var action = "UPDATE " + tableName + " SET burger_name=? WHERE id=?";
+    connection.query(action, [name, id], function(err, result) {
+      if (err) {throw err};
+      // cb(result);
+      console.log(result + "four!");
 
     });
   }
