@@ -21,19 +21,18 @@
 
 <ul>
   {{#each burgers}}
-  	<li>
-  	   <p>ID: {{this.id}}</p>
-       <p>Burger Name: {{this.burger_name}}</p>
-  	</li>
+  	{{> partials/burger-block devoured=false}}
   {{/each}}
 </ul>
 
 
 <h2>Add a Burger</h2>
-<form action="/" method="POST">
-	<textarea type="text" name="burgers"></textarea>
+{{!-- <form action="/" method="POST"> --}}
+<form class="burgerSubmit">
+	<textarea type="text" name="burgers" id="bur"></textarea>
 
 	<button type="submit">Submit</button>
+  <p>Enter a burger you want to eat Click "Submit"  Button</p>
 </form>
 
   {{!-- <div class="form-group">
@@ -42,5 +41,5 @@
     <input type="radio" name="sleepy" value="0"> Awake
   </div> --}}
 
-  <button type="submit">Add Burger</button>
+  {{!-- <button type="submit">Devour</button> --}}
 </form>
